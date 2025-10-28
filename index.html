@@ -9,14 +9,15 @@
   <style>
     /* Стиль для главного блока-контейнера */
     .links-bar {
-      width: 500px;
-      height: 30px;
-      opacity: 0.8;
-      background-image: url('banner.png');
-      background-repeat: no-repeat;
-      background-position: right center;
-      display: flex;
-      align-items: center;
+	width: 900px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: flex-start;
     }
     
     /* Общий стиль для всех ссылок внутри нашего блока */
@@ -32,7 +33,7 @@
 </head>
 <body>
 <hr>
-<div>
+<div class="links-bar">
 <a href="https://gamedev.ru/community/theisland/articles/"><img src="banner_01.png"></a><a href="https://t.me/theislangame"><img src="banner_02.png"></a><a href="https://vk.com/projecttheisland"><img src="banner_03.png"></a><a href="https://ims.cr5.space/app/p/iRUXecjr/The-Island/about"><img src="banner_04.png"></a><a href="https://gamedev.ru/community/theisland/articles/"><img src="banner_05.png"></a>
 </div>
 
