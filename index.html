@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Links Bar</title>
+  
+  <!-- Встроенные стили -->
+  <style>
+    /* Стиль для главного блока-контейнера */
+    .links-bar {
+      width: 500px;
+      height: 40px;
+      opacity: 0.7;
+      background-image: url('https://i.vgy.me/53Y6wt.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Общий стиль для всех ссылок внутри нашего блока */
+    .links-bar a {
+      font-family: Arial, sans-serif; /* Шрифт без засечек */
+      color: black;                   /* Черный цвет текста */
+      text-decoration: none;          /* Убираем подчеркивание */
+      /* Белая обводка текста с помощью тени */
+      text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    }
+  </style>
+  
+</head>
+<body>
+
+<!-- Теперь HTML-код выглядит гораздо чище. Мы просто присваиваем блоку класс "links-bar" -->
+<div class="links-bar">
+  🔹<a href="https://gamedev.ru/community/theisland/articles/">Блог</a>🔹<a href="https://t.me/theislangame">Телеграм</a>🔹<a href="https://discord.gg/tcuGsgwQTZ">Discord</a> 🔹<a href="https://vk.com/projecttheisland">VK</a>🔹<a href="https://ims.cr5.space/app/p/iRUXecjr/The-Island/about">IMS Creators</a>🔹
+</div>
+
+</body>
+</html>
