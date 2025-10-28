@@ -2,52 +2,161 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Links Bar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Island - Banner</title>
   
-  <!-- Встроенные стили -->
   <style>
-	html
-	{
-	    overflow-x: clip;
-	}
-	
-	hr {
-	  border: none; /* Убираем стандартную рамку/тень */
-	  border-top: 1px solid #777777; /* Создаем свою линию сверху */
-	  opacity: 0.5; /* Делаем ее полупрозрачной */
-	  margin: 1em 0; /* Добавляем отступы для красоты (по желанию) */
-	}
-	
-    /* Стиль для главного блока-контейнера */
-    .links-bar {
-	width: 900px;
-	height: 30px;
-	display: flex;
-	align-items: center;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: flex-start;
-	align-items: flex-start;
+    /* 
+      Анимация для плавного движения фона.
+      Движение происходит на -792px, что в точности равно ширине вашего back.png.
+      Это обеспечивает идеальный, бесшовный цикл.
+    */
+    @keyframes scroll-background {
+      from {
+        background-position: 0 0;
+      }
+      to {
+        background-position: -792px 0;
+      }
+    }
+
+    /* Главный контейнер баннера */
+    .banner-container {
+      position: relative;
+      width: 850px;
+	  height: 34px; 
+      max-height: 34px; 
+      border-radius: 5px;
+      overflow: visible;;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Слой с движущимися пальмами (back.png) */
+    .palms-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('back.png');
+      background-repeat: repeat-x;
+      animation: scroll-background 120s linear infinite;
+      z-index: 1;
+    }
+
+    /* Слой с градиентом */
+    .gradient-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        189deg, 
+        rgba(190, 180, 220, 0.9) 0%,
+		rgba(190, 180, 220, 0.5) 50%,
+		rgba(190, 180, 220, 0.1) 55%,
+        rgba(150, 140, 200, 0.1) 100%
+      );
+      z-index: 2;
     }
     
-    /* Общий стиль для всех ссылок внутри нашего блока */
-    .links-bar a {
-      font-family: Arial, sans-serif; /* Шрифт без засечек */
-      color: black;                   /* Черный цвет текста */
-      text-decoration: none;          /* Убираем подчеркивание */
-      /* Белая обводка текста с помощью тени */
-      text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    /* Контейнер для текста и ссылок */
+    .banner-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 35px;
+      /* Отступ слева 30px, отступ справа 90px, чтобы текст не заезжал на логотип */
+      padding: 0 90px 0 30px; 
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box; /* Важно для правильной работы padding */
+      z-index: 3;
     }
+    
+    /* Стиль для градиентных ссылок с обводкой */
+    .banner-content a {
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      font-size: 22px; /* Увеличил размер для новой высоты баннера */
+      font-weight: bold;
+      text-decoration: none;
+      
+      /* Градиентный текст */
+      background: linear-gradient(to bottom, #f0e6ff, #cda8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+
+      /* Белая обводка текста */
+      -webkit-text-stroke: 0.2px white; 
+      text-shadow: 0px 0px 0.2px rgba(255, 255, 255, 0.5);
+      transition: transform 0.2s ease-out; /* Плавный эффект при наведении */
+    }
+	
+.banner-content a {
+    font-family: Arial;
+    font-size: 21px;
+    font-weight: bold;
+    text-decoration: none;
+    background: linear-gradient(to bottom, #b6d2ff, #a7cbff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: #b7b7b700;
+    -webkit-text-stroke: 0.25px #5018d3ed;
+    text-shadow: 0px 0px 0.2px rgb(255 255 255 / 43%);
+    transition: transform 0.2s ease-out;
+}
+    
+    .banner-content a:hover {
+      transform: scale(1.15); /* Легкое увеличение при наведении */
+    }
+
+    /* Место для логотипа справа (logo.png) */
+    .logo-container {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      /* Размеры точно соответствуют вашему logo.png */
+      width: 52px;
+      height: 51px;
+      z-index: 4;
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; /* Делаем изображение идеально круглым */
+    }
+
   </style>
-  
 </head>
 <body>
-<hr>
-<div class="links-bar">
-<a href="https://gamedev.ru/community/theisland/articles/"><img src="banner_01.png"></a><a href="https://t.me/theislangame"><img src="banner_02.png"></a><a href="https://vk.com/projecttheisland"><img src="banner_03.png"></a><a href="https://ims.cr5.space/app/p/iRUXecjr/The-Island/about"><img src="banner_04.png"></a><a href="https://gamedev.ru/community/theisland/articles/"><img src="banner_05.png"></a>
-</div>
+
+  <!-- Структура баннера -->
+  <div class="banner-container">
+    
+    <!-- Слой 1: Движущиеся пальмы -->
+    <div class="palms-background"></div>
+    
+    <!-- Слой 2: Градиентная подложка -->
+    <div class="gradient-overlay"></div>
+    
+    <!-- Слой 4: Логотип -->
+    <div class="logo-container">
+      <img src="logo.png" alt="The Island Logo">
+    </div>
+    
+    <!-- Слой 3: Контент (ссылки) -->
+    <div class="banner-content">
+      <a href="#">Блог</a>
+      <a href="#">Телеграм</a>
+      <a href="#">VK</a>
+      <a href="#">IMS Creators</a>
+    </div>
+
+  </div>
 
 </body>
 </html>
