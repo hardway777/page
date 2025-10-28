@@ -6,10 +6,6 @@
   <title>The Island - Banner</title>
   
   <style>
-    /* 
-      ДОБАВЛЕНО: Регистрация кастомных свойств для плавной анимации цветов.
-      Браузер теперь знает, как анимировать переход между значениями --color-start и --color-end.
-    */
     @property --color-start {
       syntax: '<color>';
       inherits: false;
@@ -52,17 +48,32 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* ИЗМЕНЕНО: Градиент теперь использует анимируемые переменные */
       background: linear-gradient(180deg, var(--color-start) 0%, var(--color-end) 100%);
-      /* ИЗМЕНЕНО: Указываем, что нужно плавно изменять сами переменные, а не 'background' */
 	  transition: --color-start 0.5s ease-in-out, --color-end 0.5s ease-in-out; 
       z-index: 1;
     }
 
-    /* ИЗМЕНЕНО: При наведении мы меняем значения переменных, а не весь фон */
     .banner-container:hover .palms-background_gradient {
       --color-start: rgb(89 19 211);
       --color-end: rgb(254 98 255 / 98%); 
+    }
+
+    /* ДОБАВЛЕНО: Новый слой с медленными пальмами */
+    .palms-background-slow {
+      position: absolute;
+      border-radius: 5px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('back_city.png');
+      background-repeat: repeat-x;
+      /* Анимация медленнее */
+      animation: scroll-background 220s linear infinite;
+      /* Пониженная прозрачность */
+      opacity: 0.3;
+      /* z-index позади основного слоя пальм */
+      z-index: 2;
     }
 
     .palms-background {
@@ -74,8 +85,10 @@
       height: 100%;
       background-image: url('back.png');
       background-repeat: repeat-x;
+      /* Стандартная скорость анимации */
       animation: scroll-background 120s linear infinite;
-      z-index: 2;
+      /* ИЗМЕНЕНО: z-index, чтобы быть над медленным слоем */
+      z-index: 3;
     }
 
     .gradient-overlay {
@@ -92,7 +105,8 @@
 		rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
-      z-index: 3;
+      /* ИЗМЕНЕНО: z-index */
+      z-index: 4;
     }
     
     .banner-content {
@@ -104,7 +118,8 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      z-index: 4;
+      /* ИЗМЕНЕНО: z-index */
+      z-index: 5;
     }
 	
     .banner-content a {
@@ -132,7 +147,8 @@
       transform: translateY(-50%);
       width: 52px;
       height: 51px;
-      z-index: 5;
+      /* ИЗМЕНЕНО: z-index, чтобы быть самым верхним слоем */
+      z-index: 6;
     }
 
     .logo-container img {
@@ -151,18 +167,21 @@
     <!-- Слой 1: Фон (будет плавно меняться при наведении) -->
     <div class="palms-background_gradient"></div>
 
-    <!-- Слой 2: Движущиеся пальмы -->
+    <!-- Слой 2: Дальние медленные пальмы (НОВЫЙ) -->
+    <div class="palms-background-slow"></div>
+
+    <!-- Слой 3: Ближние быстрые пальмы -->
     <div class="palms-background"></div>
     
-    <!-- Слой 3: Градиентная подложка -->
+    <!-- Слой 4: Градиентная подложка -->
     <div class="gradient-overlay"></div>
     
-    <!-- Слой 4: Логотип -->
+    <!-- Слой 5: Логотип -->
     <div class="logo-container">
       <img src="logo.png" alt="The Island Logo">
     </div>
     
-    <!-- Слой 5: Контент (ссылки) -->
+    <!-- Слой 6: Контент (ссылки) -->
     <div class="banner-content">
       <a href="https://gamedev.ru/community/theisland/articles/">Блог</a>
       <a href="https://t.me/theislangame">Телеграм</a>
