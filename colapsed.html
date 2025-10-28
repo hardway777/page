@@ -6,7 +6,6 @@
   <title>The Island - Banner</title>
   
   <style>
-    /* ИЗМЕНЕНО: Начальные значения для "спящего" темного состояния */
     @property --color-start {
       syntax: '<color>';
       inherits: false;
@@ -33,18 +32,14 @@
 		position: relative;
 		width: 100%;
 		max-width: 878px;
-		/* ИЗМЕНЕНО: Начальная высота 50% */
 		height: 17px;
 		max-height: 34px;
 		border-radius: 5px;
-        /* ИЗМЕНЕНО: Прячем контент, который выходит за границы */
 		overflow: hidden;
 		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        /* ДОБАВЛЕНО: Плавный переход для высоты */
         transition: height 0.4s ease-in-out;
 	}
     
-    /* При наведении контейнер расширяется и показывает контент */
     .banner-container:hover {
         height: 34px;
         overflow: visible;
@@ -63,7 +58,6 @@
       z-index: 1;
     }
 
-    /* ИЗМЕНЕНО: При наведении фон становится ярким */
     .banner-container:hover .palms-background_gradient {
       --color-start: rgb(89 19 211);
       --color-end: rgb(254 98 255 / 98%); 
@@ -110,7 +104,16 @@
 		rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
+      /* ИЗМЕНЕНО: Начальное состояние - невидим */
+      opacity: 0;
+      /* ДОБАВЛЕНО: Плавный переход для появления */
+      transition: opacity 0.5s ease-in-out 0.1s;
       z-index: 4;
+    }
+    
+    /* ДОБАВЛЕНО: При наведении на контейнер, глянец появляется */
+    .banner-container:hover .gradient-overlay {
+        opacity: 1;
     }
     
     .banner-content {
@@ -127,7 +130,6 @@
 	
     .banner-content a {
       font-family: Arial;
-      /* ИЗМЕНЕНО: Начальный размер 0 */
       font-size: 0px; 
       font-weight: bold;
       text-decoration: none;
@@ -137,14 +139,11 @@
       color: #ffffff00;
       -webkit-text-stroke: 0.7px #ffffff;
       text-shadow: 0px 1px 6px rgb(251 7 255);
-      /* ИЗМЕНЕНО: Начальное состояние - невидимы и сдвинуты вниз */
       opacity: 0;
       transform: translateY(15px);
-      /* ДОБАВЛЕНО: Плавные переходы для всех свойств с задержкой */
       transition: transform 0.3s ease-out 0.2s, opacity 0.3s ease-out 0.2s, font-size 0.3s ease-out 0.2s;
     }
     
-    /* При наведении на контейнер, ссылки появляются */
     .banner-container:hover .banner-content a {
         font-size: 20px;
         opacity: 1;
@@ -159,17 +158,14 @@
       position: absolute;
       right: 20px;
       top: 50%;
-      /* ИЗМЕНЕНО: Начальное состояние - невидимый и сжатый */
       opacity: 0;
       transform: translateY(-50%) scale(0);
       width: 52px;
       height: 51px;
       z-index: 6;
-      /* ДОБАВЛЕНО: Плавный переход для появления */
       transition: opacity 0.3s ease-out 0.1s, transform 0.3s ease-out 0.1s;
     }
 
-    /* При наведении на контейнер, лого появляется */
     .banner-container:hover .logo-container {
         opacity: 1;
         transform: translateY(-50%) scale(1);
