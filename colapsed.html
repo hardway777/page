@@ -48,7 +48,7 @@
 		max-height: 34px;
 		border-radius: 5px;
 		overflow: hidden;
-		box-shadow: 0 0px 3px rgba(0, 0, 0, 0.2);
+		box-shadow: 0 0px 3px rgba(0, 0, 0, 0.15);
         transition: height 0.4s ease-in-out;
 	}
     
@@ -111,9 +111,8 @@
       background-image: url('back.png');
       background-repeat: repeat-x;
       animation: scroll-background 120s linear infinite;
-      /* ИЗМЕНЕНО: По умолчанию невидимы */
       opacity: 0;
-      transition: opacity 0.5s ease-in-out 0.2s; /* Появляются с задержкой */
+      transition: opacity 0.5s ease-in-out 0.2s;
       z-index: 4;
     }
     
