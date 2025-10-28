@@ -8,30 +8,36 @@
   <style>
     @keyframes scroll-background {
       from {
-        background-position: 0 0;
+        /* ИЗМЕНЕНО: Фон центрируется по вертикали */
+        background-position: 0 center;
       }
       to {
-        background-position: -792px 0;
+        /* ИЗМЕНЕНО: Фон центрируется по вертикали */
+        background-position: -792px center;
       }
     }
 
-	.banner-container 
-	{
-		position: relative;
-		width: 100%;
-		max-width: 878px;
-		height: 34px;
-		max-height: 34px;
-		border-radius: 5px;
-		overflow: visible;
-		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-		opacity: 1;
-	}
+    .banner-container 
+    {
+      position: relative;
+      width: 100%;
+      max-width: 878px;
+      height: 17px; 
+      max-height: 34px;
+      border-radius: 5px;
+      overflow: visible;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      opacity: 1;
+      transition: height 0.3s ease-in-out;
+    }
 
+    .banner-container:hover {
+      height: 34px;
+    }
 
     .palms-background {
       position: absolute;
-	  border-radius: 5px;
+      border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
@@ -42,10 +48,9 @@
       z-index: 1;
     }
 
-
     .gradient-overlay {
       position: absolute;
-	  border-radius: 5px;
+      border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
@@ -53,63 +58,70 @@
       background: linear-gradient(
         180deg, 
         rgba(190, 180, 220, 1.0) 0%,
-		rgba(190, 180, 220, 0.4) 50%,
-		rgba(190, 180, 220, 0.1) 55%,
+        rgba(190, 180, 220, 0.4) 50%,
+        rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
       z-index: 2;
     }
     
-
     .banner-content {
       position: relative;
       display: flex;
       align-items: center;
       gap: 35px;
-      /* Отступ слева 30px, отступ справа 90px, чтобы текст не заезжал на логотип */
       padding: 0 90px 0 30px; 
       width: 100%;
       height: 100%;
-      box-sizing: border-box; /* Важно для правильной работы padding */
+      box-sizing: border-box;
       z-index: 3;
     }
 
-	
-.banner-content a {
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    background: linear-gradient(to bottom, #ff00c8, #0068ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: #ffffff00;
-    -webkit-text-stroke: 0.7px #ffffff;
-    text-shadow: 0px 1px 6px rgb(251 7 255);
-    transition: transform 0.2s ease-out;
-}
+    .banner-content a {
+      font-family: Arial;
+      font-size: 10px; 
+      font-weight: bold;
+      text-decoration: none;
+      background: linear-gradient(to bottom, #ff00c8, #0068ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: #ffffff00;
+      -webkit-text-stroke: 0.7px #ffffff;
+      text-shadow: 0px 1px 6px rgb(251 7 255);
+      transition: transform 0.2s ease-out, font-size 0.3s ease-in-out;
+    }
     
     .banner-content a:hover {
       transform: scale(1.15);
     }
 
-    .logo-container {
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      /* Размеры точно соответствуют вашему logo.png */
-      width: 52px;
-      height: 51px;
-      z-index: 4;
+    .banner-container:hover .banner-content a {
+      font-size: 20px;
     }
 
-.logo-container img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-shadow: 0px 0px 7px #00000091;
-}
+    .logo-container {
+      position: absolute;
+      right: 10px; 
+      top: 50%;
+      transform: translateY(-50%);
+      width: 17px;
+      height: 17px;
+      z-index: 4;
+      transition: width 0.3s ease-in-out, height 0.3s ease-in-out, right 0.3s ease-in-out;
+    }
+
+    .banner-container:hover .logo-container {
+      width: 52px;
+      height: 51px;
+      right: 20px;
+    }
+
+	.logo-container img {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		box-shadow: 0px 0px 7px #00000091;
+	}
 
   </style>
 </head>
