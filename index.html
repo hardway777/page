@@ -34,6 +34,7 @@
     /* Слой с движущимися пальмами (back.png) */
     .palms-background {
       position: absolute;
+	  border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
@@ -47,6 +48,7 @@
     /* Слой с градиентом */
     .gradient-overlay {
       position: absolute;
+	  border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
@@ -74,25 +76,7 @@
       box-sizing: border-box; /* Важно для правильной работы padding */
       z-index: 3;
     }
-    
-    /* Стиль для градиентных ссылок с обводкой */
-    .banner-content a {
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-      font-size: 22px; /* Увеличил размер для новой высоты баннера */
-      font-weight: bold;
-      text-decoration: none;
-      
-      /* Градиентный текст */
-      background: linear-gradient(to bottom, #f0e6ff, #cda8ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
 
-      /* Белая обводка текста */
-      -webkit-text-stroke: 0.2px white; 
-      text-shadow: 0px 0px 0.2px rgba(255, 255, 255, 0.5);
-      transition: transform 0.2s ease-out; /* Плавный эффект при наведении */
-    }
 	
 .banner-content a {
     font-family: Arial;
