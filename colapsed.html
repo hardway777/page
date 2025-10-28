@@ -45,7 +45,7 @@
       background-image: url('back.png');
       background-repeat: repeat-x;
       animation: scroll-background 120s linear infinite;
-      z-index: 1;
+      z-index: 2;
     }
 
     .gradient-overlay {
@@ -62,7 +62,7 @@
         rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
-      z-index: 2;
+      z-index: 3;
     }
     
     .banner-content {
@@ -74,7 +74,7 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      z-index: 3;
+      z-index: 4;
     }
 
     .banner-content a {
@@ -106,7 +106,7 @@
       transform: translateY(-50%);
       width: 17px;
       height: 17px;
-      z-index: 4;
+      z-index: 5;
       transition: width 0.3s ease-in-out, height 0.3s ease-in-out, right 0.3s ease-in-out;
     }
 
@@ -132,8 +132,11 @@
     
     <!-- Слой 1: Движущиеся пальмы -->
     <div class="palms-background"></div>
-    
-    <!-- Слой 2: Градиентная подложка -->
+	
+        <!-- Слой 2: фон -->
+    <div class="palms-background"></div>
+	
+    <!-- Слой 3: Градиентная подложка -->
     <div class="gradient-overlay"></div>
     
     <!-- Слой 4: Логотип -->
@@ -143,10 +146,10 @@
     
     <!-- Слой 3: Контент (ссылки) -->
     <div class="banner-content">
-      <a href="#">Блог</a>
-      <a href="#">Телеграм</a>
-      <a href="#">VK</a>
-      <a href="#">IMS Creators</a>
+      <a href="https://gamedev.ru/community/theisland/articles/">Блог</a>
+      <a href="https://t.me/theislangame">Телеграм</a>
+      <a href="https://vk.com/projecttheisland">VK</a>
+      <a href="https://ims.cr5.space/app/p/iRUXecjr/The-Island/about">IMS</a>
     </div>
 
   </div>

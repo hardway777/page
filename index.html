@@ -6,6 +6,22 @@
   <title>The Island - Banner</title>
   
   <style>
+    /* 
+      ДОБАВЛЕНО: Регистрация кастомных свойств для плавной анимации цветов.
+      Браузер теперь знает, как анимировать переход между значениями --color-start и --color-end.
+    */
+    @property --color-start {
+      syntax: '<color>';
+      inherits: false;
+      initial-value: rgb(70 71 255 / 90%);
+    }
+
+    @property --color-end {
+      syntax: '<color>';
+      inherits: false;
+      initial-value: rgb(88 201 255 / 98%);
+    }
+
     @keyframes scroll-background {
       from {
         background-position: 0 0;
@@ -28,6 +44,26 @@
 		opacity: 1;
 	}
 
+    .palms-background_gradient 
+	{
+      position: absolute;
+	  border-radius: 5px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* ИЗМЕНЕНО: Градиент теперь использует анимируемые переменные */
+      background: linear-gradient(180deg, var(--color-start) 0%, var(--color-end) 100%);
+      /* ИЗМЕНЕНО: Указываем, что нужно плавно изменять сами переменные, а не 'background' */
+	  transition: --color-start 0.5s ease-in-out, --color-end 0.5s ease-in-out; 
+      z-index: 1;
+    }
+
+    /* ИЗМЕНЕНО: При наведении мы меняем значения переменных, а не весь фон */
+    .banner-container:hover .palms-background_gradient {
+      --color-start: rgb(89 19 211);
+      --color-end: rgb(254 98 255 / 98%); 
+    }
 
     .palms-background {
       position: absolute;
@@ -39,9 +75,8 @@
       background-image: url('back.png');
       background-repeat: repeat-x;
       animation: scroll-background 120s linear infinite;
-      z-index: 1;
+      z-index: 2;
     }
-
 
     .gradient-overlay {
       position: absolute;
@@ -51,43 +86,40 @@
       width: 100%;
       height: 100%;
       background: linear-gradient(
-        189deg, 
+        180deg, 
         rgba(190, 180, 220, 0.9) 0%,
 		rgba(190, 180, 220, 0.5) 50%,
 		rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
-      z-index: 2;
+      z-index: 3;
     }
     
-
     .banner-content {
       position: relative;
       display: flex;
       align-items: center;
       gap: 35px;
-      /* Отступ слева 30px, отступ справа 90px, чтобы текст не заезжал на логотип */
       padding: 0 90px 0 30px; 
       width: 100%;
       height: 100%;
-      box-sizing: border-box; /* Важно для правильной работы padding */
-      z-index: 3;
+      box-sizing: border-box;
+      z-index: 4;
     }
-
 	
-.banner-content a {
-    font-family: Arial;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: none;
-    background: linear-gradient(to bottom, #ff00c8, #0068ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: #ffffff00;
-    -webkit-text-stroke: 0.7px #ffffff;
-    text-shadow: 0px 1px 6px rgb(251 7 255);
-    transition: transform 0.2s ease-out;
-}
+    .banner-content a {
+      font-family: Arial;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      background: linear-gradient(to bottom, #ff00c8, #0068ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: #ffffff00;
+      -webkit-text-stroke: 0.7px #ffffff;
+      text-shadow: 0px 1px 6px rgb(251 7 255);
+      transition: transform 0.2s ease-out;
+    }
     
     .banner-content a:hover {
       transform: scale(1.15);
@@ -98,16 +130,15 @@
       right: 20px;
       top: 50%;
       transform: translateY(-50%);
-      /* Размеры точно соответствуют вашему logo.png */
       width: 52px;
       height: 51px;
-      z-index: 4;
+      z-index: 5;
     }
 
     .logo-container img {
       width: 100%;
       height: 100%;
-      border-radius: 50%; /* Делаем изображение идеально круглым */
+      border-radius: 50%;
     }
 
   </style>
@@ -116,11 +147,14 @@
 
   <!-- Структура баннера -->
   <div class="banner-container">
-    
-    <!-- Слой 1: Движущиеся пальмы -->
+  
+    <!-- Слой 1: Фон (будет плавно меняться при наведении) -->
+    <div class="palms-background_gradient"></div>
+
+    <!-- Слой 2: Движущиеся пальмы -->
     <div class="palms-background"></div>
     
-    <!-- Слой 2: Градиентная подложка -->
+    <!-- Слой 3: Градиентная подложка -->
     <div class="gradient-overlay"></div>
     
     <!-- Слой 4: Логотип -->
@@ -128,7 +162,7 @@
       <img src="logo.png" alt="The Island Logo">
     </div>
     
-    <!-- Слой 3: Контент (ссылки) -->
+    <!-- Слой 5: Контент (ссылки) -->
     <div class="banner-content">
       <a href="https://gamedev.ru/community/theisland/articles/">Блог</a>
       <a href="https://t.me/theislangame">Телеграм</a>
