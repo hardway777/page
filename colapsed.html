@@ -6,38 +6,86 @@
   <title>The Island - Banner</title>
   
   <style>
+    /* ИЗМЕНЕНО: Начальные значения для "спящего" темного состояния */
+    @property --color-start {
+      syntax: '<color>';
+      inherits: false;
+      initial-value: rgba(20, 20, 50, 0.5);
+    }
+
+    @property --color-end {
+      syntax: '<color>';
+      inherits: false;
+      initial-value: rgba(10, 10, 20, 0.5);
+    }
+
     @keyframes scroll-background {
       from {
-        /* ИЗМЕНЕНО: Фон центрируется по вертикали */
-        background-position: 0 center;
+        background-position: 0 0;
       }
       to {
-        /* ИЗМЕНЕНО: Фон центрируется по вертикали */
-        background-position: -792px center;
+        background-position: -792px 0;
       }
     }
 
-    .banner-container 
-    {
-      position: relative;
-      width: 100%;
-      max-width: 878px;
-      height: 17px; 
-      max-height: 34px;
-      border-radius: 5px;
-      overflow: visible;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      opacity: 1;
-      transition: height 0.3s ease-in-out;
+	.banner-container 
+	{
+		position: relative;
+		width: 100%;
+		max-width: 878px;
+		/* ИЗМЕНЕНО: Начальная высота 50% */
+		height: 17px;
+		max-height: 34px;
+		border-radius: 5px;
+        /* ИЗМЕНЕНО: Прячем контент, который выходит за границы */
+		overflow: hidden;
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        /* ДОБАВЛЕНО: Плавный переход для высоты */
+        transition: height 0.4s ease-in-out;
+	}
+    
+    /* При наведении контейнер расширяется и показывает контент */
+    .banner-container:hover {
+        height: 34px;
+        overflow: visible;
     }
 
-    .banner-container:hover {
-      height: 34px;
+    .palms-background_gradient 
+	{
+      position: absolute;
+	  border-radius: 5px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--color-start) 0%, var(--color-end) 100%);
+	  transition: --color-start 0.5s ease-in-out, --color-end 0.5s ease-in-out; 
+      z-index: 1;
+    }
+
+    /* ИЗМЕНЕНО: При наведении фон становится ярким */
+    .banner-container:hover .palms-background_gradient {
+      --color-start: rgb(89 19 211);
+      --color-end: rgb(254 98 255 / 98%); 
+    }
+
+    .palms-background-slow {
+      position: absolute;
+      border-radius: 5px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('back_city.png');
+      background-repeat: repeat-x;
+      animation: scroll-background 220s linear infinite;
+      opacity: 0.3;
+      z-index: 2;
     }
 
     .palms-background {
       position: absolute;
-      border-radius: 5px;
+	  border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
@@ -45,24 +93,24 @@
       background-image: url('back.png');
       background-repeat: repeat-x;
       animation: scroll-background 120s linear infinite;
-      z-index: 2;
+      z-index: 3;
     }
 
     .gradient-overlay {
       position: absolute;
-      border-radius: 5px;
+	  border-radius: 5px;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       background: linear-gradient(
         180deg, 
-        rgba(190, 180, 220, 1.0) 0%,
-        rgba(190, 180, 220, 0.4) 50%,
-        rgba(190, 180, 220, 0.1) 55%,
+        rgba(190, 180, 220, 0.6) 0%,
+		rgba(190, 180, 220, 0.3) 50%,
+		rgba(190, 180, 220, 0.1) 55%,
         rgba(150, 140, 200, 0.1) 100%
       );
-      z-index: 3;
+      z-index: 4;
     }
     
     .banner-content {
@@ -74,12 +122,13 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      z-index: 4;
+      z-index: 5;
     }
-
+	
     .banner-content a {
       font-family: Arial;
-      font-size: 10px; 
+      /* ИЗМЕНЕНО: Начальный размер 0 */
+      font-size: 0px; 
       font-weight: bold;
       text-decoration: none;
       background: linear-gradient(to bottom, #ff00c8, #0068ff);
@@ -88,40 +137,49 @@
       color: #ffffff00;
       -webkit-text-stroke: 0.7px #ffffff;
       text-shadow: 0px 1px 6px rgb(251 7 255);
-      transition: transform 0.2s ease-out, font-size 0.3s ease-in-out;
+      /* ИЗМЕНЕНО: Начальное состояние - невидимы и сдвинуты вниз */
+      opacity: 0;
+      transform: translateY(15px);
+      /* ДОБАВЛЕНО: Плавные переходы для всех свойств с задержкой */
+      transition: transform 0.3s ease-out 0.2s, opacity 0.3s ease-out 0.2s, font-size 0.3s ease-out 0.2s;
+    }
+    
+    /* При наведении на контейнер, ссылки появляются */
+    .banner-container:hover .banner-content a {
+        font-size: 20px;
+        opacity: 1;
+        transform: translateY(0);
     }
     
     .banner-content a:hover {
       transform: scale(1.15);
     }
 
-    .banner-container:hover .banner-content a {
-      font-size: 20px;
-    }
-
     .logo-container {
       position: absolute;
-      right: 10px; 
+      right: 20px;
       top: 50%;
-      transform: translateY(-50%);
-      width: 17px;
-      height: 17px;
-      z-index: 5;
-      transition: width 0.3s ease-in-out, height 0.3s ease-in-out, right 0.3s ease-in-out;
-    }
-
-    .banner-container:hover .logo-container {
+      /* ИЗМЕНЕНО: Начальное состояние - невидимый и сжатый */
+      opacity: 0;
+      transform: translateY(-50%) scale(0);
       width: 52px;
       height: 51px;
-      right: 20px;
+      z-index: 6;
+      /* ДОБАВЛЕНО: Плавный переход для появления */
+      transition: opacity 0.3s ease-out 0.1s, transform 0.3s ease-out 0.1s;
     }
 
-	.logo-container img {
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		box-shadow: 0px 0px 7px #00000091;
-	}
+    /* При наведении на контейнер, лого появляется */
+    .banner-container:hover .logo-container {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
 
   </style>
 </head>
@@ -129,22 +187,16 @@
 
   <!-- Структура баннера -->
   <div class="banner-container">
-    
-    <!-- Слой 1: Движущиеся пальмы -->
+  
+    <div class="palms-background_gradient"></div>
+    <div class="palms-background-slow"></div>
     <div class="palms-background"></div>
-	
-        <!-- Слой 2: фон -->
-    <div class="palms-background"></div>
-	
-    <!-- Слой 3: Градиентная подложка -->
     <div class="gradient-overlay"></div>
     
-    <!-- Слой 4: Логотип -->
     <div class="logo-container">
       <img src="logo.png" alt="The Island Logo">
     </div>
     
-    <!-- Слой 3: Контент (ссылки) -->
     <div class="banner-content">
       <a href="https://gamedev.ru/community/theisland/articles/">Блог</a>
       <a href="https://t.me/theislangame">Телеграм</a>
