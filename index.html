@@ -6,11 +6,6 @@
   <title>The Island - Banner</title>
   
   <style>
-    /* 
-      Анимация для плавного движения фона.
-      Движение происходит на -792px, что в точности равно ширине вашего back.png.
-      Это обеспечивает идеальный, бесшовный цикл.
-    */
     @keyframes scroll-background {
       from {
         background-position: 0 0;
@@ -20,7 +15,6 @@
       }
     }
 
-    /* Главный контейнер баннера */
     .banner-container {
       position: relative;
       width: 850px;
@@ -31,7 +25,7 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
 
-    /* Слой с движущимися пальмами (back.png) */
+
     .palms-background {
       position: absolute;
 	  border-radius: 5px;
@@ -45,7 +39,7 @@
       z-index: 1;
     }
 
-    /* Слой с градиентом */
+
     .gradient-overlay {
       position: absolute;
 	  border-radius: 5px;
@@ -63,7 +57,7 @@
       z-index: 2;
     }
     
-    /* Контейнер для текста и ссылок */
+
     .banner-content {
       position: relative;
       display: flex;
@@ -93,10 +87,9 @@
 }
     
     .banner-content a:hover {
-      transform: scale(1.15); /* Легкое увеличение при наведении */
+      transform: scale(1.15);
     }
 
-    /* Место для логотипа справа (logo.png) */
     .logo-container {
       position: absolute;
       right: 20px;
@@ -111,7 +104,7 @@
     .logo-container img {
       width: 100%;
       height: 100%;
-      border-radius: 50%; /* Делаем изображение идеально круглым */
+      border-radius: 50%;
     }
 
   </style>
