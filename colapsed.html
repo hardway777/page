@@ -15,7 +15,7 @@
     @property --color-end {
       syntax: '<color>';
       inherits: false;
-      initial-value: rgba(10, 10, 20, 0.2);
+      initial-value: rgba(10, 10, 20, 0.5);
     }
 
     @keyframes scroll-background {
@@ -24,6 +24,18 @@
       }
       to {
         background-position: -792px 0;
+      }
+    }
+
+    /* ДОБАВЛЕНО: Анимация для машины */
+    @keyframes drive-car {
+      from {
+        /* Начинаем за левым краем */
+        background-position: -150px bottom;
+      }
+      to {
+        /* Заканчиваем за правым краем. calc() для надежности */
+        background-position: calc(100% + 350px) bottom;
       }
     }
 
@@ -36,7 +48,7 @@
 		max-height: 34px;
 		border-radius: 5px;
 		overflow: hidden;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         transition: height 0.4s ease-in-out;
 	}
     
@@ -49,10 +61,7 @@
 	{
       position: absolute;
 	  border-radius: 5px;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: linear-gradient(180deg, var(--color-start) 0%, var(--color-end) 100%);
 	  transition: --color-start 0.5s ease-in-out, --color-end 0.5s ease-in-out; 
       z-index: 1;
@@ -63,55 +72,70 @@
       --color-end: rgb(254 98 255 / 98%); 
     }
 
+    /* Город - всегда виден */
     .palms-background-slow {
       position: absolute;
       border-radius: 5px;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background-image: url('back_city.png');
       background-repeat: repeat-x;
       animation: scroll-background 220s linear infinite;
       opacity: 0.3;
       z-index: 2;
     }
+    
+    /* ДОБАВЛЕНО: Слой с машиной */
+    .car-layer {
+      position: absolute;
+      border-radius: 5px;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: url('car.png');
+      background-repeat: no-repeat;
+      background-size: auto 12px; /* Размер машины, подберите по высоте */
+      animation: drive-car 90s linear infinite; /* Применяем анимацию движения */
+      /* По умолчанию видна, при наведении исчезает */
+      opacity: 0.7;
+      transition: opacity 0.3s ease-out;
+      z-index: 3;
+    }
+    
+    .banner-container:hover .car-layer {
+        opacity: 0;
+    }
 
+    /* Пальмы */
     .palms-background {
       position: absolute;
 	  border-radius: 5px;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background-image: url('back.png');
       background-repeat: repeat-x;
       animation: scroll-background 120s linear infinite;
-      z-index: 3;
-    }
-
-    .gradient-overlay {
-      position: absolute;
-	  border-radius: 5px;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        180deg, 
-        rgba(190, 180, 220, 0.6) 0%,
-		rgba(190, 180, 220, 0.3) 50%,
-		rgba(190, 180, 220, 0.1) 55%,
-        rgba(150, 140, 200, 0.1) 100%
-      );
-      /* ИЗМЕНЕНО: Начальное состояние - невидим */
+      /* ИЗМЕНЕНО: По умолчанию невидимы */
       opacity: 0;
-      /* ДОБАВЛЕНО: Плавный переход для появления */
-      transition: opacity 0.5s ease-in-out 0.1s;
+      transition: opacity 0.5s ease-in-out 0.2s; /* Появляются с задержкой */
       z-index: 4;
     }
     
-    /* ДОБАВЛЕНО: При наведении на контейнер, глянец появляется */
+    .banner-container:hover .palms-background {
+        opacity: 1;
+    }
+
+    /* Глянец */
+    .gradient-overlay {
+      position: absolute;
+	  border-radius: 5px;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(
+        180deg, 
+        rgba(190, 180, 220, 0.6) 0%, rgba(190, 180, 220, 0.3) 50%,
+		rgba(190, 180, 220, 0.1) 55%, rgba(150, 140, 200, 0.1) 100%
+      );
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out 0.1s;
+      z-index: 5;
+    }
+    
     .banner-container:hover .gradient-overlay {
         opacity: 1;
     }
@@ -125,7 +149,7 @@
       width: 100%;
       height: 100%;
       box-sizing: border-box;
-      z-index: 5;
+      z-index: 6;
     }
 	
     .banner-content a {
@@ -134,8 +158,7 @@
       font-weight: bold;
       text-decoration: none;
       background: linear-gradient(to bottom, #ff00c8, #0068ff);
-      -webkit-background-clip: text;
-      background-clip: text;
+      -webkit-background-clip: text; background-clip: text;
       color: #ffffff00;
       -webkit-text-stroke: 0.7px #ffffff;
       text-shadow: 0px 1px 6px rgb(251 7 255);
@@ -162,7 +185,7 @@
       transform: translateY(-50%) scale(0);
       width: 52px;
       height: 51px;
-      z-index: 6;
+      z-index: 7;
       transition: opacity 0.3s ease-out 0.1s, transform 0.3s ease-out 0.1s;
     }
 
@@ -181,11 +204,12 @@
 </head>
 <body>
 
-  <!-- Структура баннера -->
   <div class="banner-container">
   
     <div class="palms-background_gradient"></div>
     <div class="palms-background-slow"></div>
+    <!-- Новый слой для машины -->
+    <div class="car-layer"></div>
     <div class="palms-background"></div>
     <div class="gradient-overlay"></div>
     
