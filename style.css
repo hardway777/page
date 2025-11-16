@@ -120,3 +120,45 @@ body {
     font-size: 14px;
     color: #777;
 }
+
+/* Стили для секции скачивания файлов */
+.downloads-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.file-download {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.file-download h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #2B4B67;
+}
+
+.file-download p {
+    margin-bottom: 10px;
+}
+
+.file-download a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #28a745; /* Зеленый цвет для кнопки скачивания */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.file-download a:hover {
+    background-color: #218838;
+    color: white;
+}
