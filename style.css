@@ -162,3 +162,43 @@ body {
     background-color: #218838;
     color: white;
 }
+
+/* Стили для блока с инструкцией на странице-шаблоне */
+.instruction-box {
+    background-color: #fffbe6; /* Светло-желтый фон, как на стикере */
+    border: 1px dashed #c9ba9b;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.instruction-box h2, .instruction-box h3 {
+    color: #333;
+    margin-top: 0;
+}
+
+.instruction-box h3 {
+    margin-top: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.instruction-box p {
+    font-size: 15px;
+}
+
+.instruction-box code {
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.instruction-box ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.instruction-box li {
+    margin-bottom: 8px;
+}
